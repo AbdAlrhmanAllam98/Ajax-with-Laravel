@@ -34,11 +34,11 @@ $('#input-form').on('submit',function(e){
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 py-3">
                         <div class="card text-center" style="width: 17rem;height:30rem">
                             <img src="${item['owner']['avatar_url']}" class="card-img-top" alt="owner-pic">
-                            <div class="card-body">
-                                <h5 class="card-title">${item['name']}</h5>
-                                <p class="card-text">${item['language']}</p>
-                                <p>${item['full_name']}</p>
-                                <p>${date}</p>
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <h6 class="card-title fw-bolder">${item['name']}</h6>
+                                <p class="card-text mb-1 text-danger">${item['language']}</p>
+                                <p class="m-auto h-50 text-muted">${item['full_name']}</p>
+                                <p class="m-0 text-success">${date}</p>
                             </div>
                         </div>
                     </div>

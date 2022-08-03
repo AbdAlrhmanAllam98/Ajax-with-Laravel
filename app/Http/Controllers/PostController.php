@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        $posts=Post::orderBy('id','ASC')->get();
+        $posts=Post::get();
         return view('post.all-posts',compact('posts'));
     }
     public function addPostWithAjax(Request $request){

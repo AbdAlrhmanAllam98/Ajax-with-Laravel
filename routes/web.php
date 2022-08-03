@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/','show-repo');
+Route::view('/','welcome');
+
+Route::view('show/repos','repo.show-repo');
 Route::post('/get-data',[RepoController::class,'getDataFromUser']);
 
 Route::controller(PostController::class)->group(function(){
