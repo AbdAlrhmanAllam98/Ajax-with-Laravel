@@ -69,6 +69,7 @@ $('#add-post').on('submit',function(e){
         success:function(response){
             if(response){
                 $('#table tbody').append(`<tr id="${response.id}">
+                                            <td><input type="checkbox" name="idPost" value="${response.id}"></td>
                                             <td>${response.id}</td>
                                             <td>${response.title}</td>
                                             <td>${response.content}</td>
@@ -92,7 +93,7 @@ $('#edit-post').on('submit',function(e){
     let content=$('#edit-content').val();
     $.ajax({
         url: `/post/edit/${id}`,
-        type:'POST',
+        type:'PUT',
         data:{
             _token:_token,
             id:id,
@@ -101,10 +102,9 @@ $('#edit-post').on('submit',function(e){
         },
         success:function(response){
             if(response){
-                $('#table tbody #'+id+' td:nth(0)').html(response.id);
-                $('#table tbody #'+id+' td:nth(1)').html(response.title);
-                $('#table tbody #'+id+' td:nth(2)').html(response.content);
-                $('#edit-post')[0].reset();
+                $('#table tbody #'+id+' td:nth(1)').html(response.id);
+                $('#table tbody #'+id+' td:nth(2)').html(response.title);
+                $('#table tbody #'+id+' td:nth(3)').html(response.content);
                 $('#editModal').modal('toggle');
                 }
             }
@@ -121,7 +121,7 @@ function deletePost(id){
                 _token:$('input[name=_token]').val(),
             },
             success:function(response){
-                if(response.message=="success"){
+                if(response){
                     $('#table tbody #'+id).remove();
                 }
             }
@@ -146,3 +146,35 @@ function editPost(id){
         $('#edit-content').val(post.content);
     })
 }
+
+// Delete Multiple Record using ajax 
+// make all records checked 
+$('#idAll').click(function(){
+    let checkBoxes=$("input:checkbox[name=idPost]")
+    checkBoxes.prop("checked",!checkBoxes.prop("checked"));
+});
+//Delete checked records by sending all IDs to controller function throw ajax 
+$('#deleteSelected').on('click',function(){
+    let allSelectedIDs=[];
+    let checkedInput=$('input:checkbox[name=idPost]:checked');
+    checkedInput.each(element=> {
+        let checkedInputValue=checkedInput[element].value;
+        allSelectedIDs.push(checkedInputValue);
+    }); 
+    $.ajax({
+        url:"/post/delete-selected",
+        type:"DELETE",
+        data:{
+            _token:$('input[name=_token]').val(),
+            allSelectedIDs:allSelectedIDs
+        },
+        success:function(response){
+            if(response){
+                allSelectedIDs.forEach(element=>{
+                    $('#table tbody #'+element).remove();
+                });
+            }
+            
+        }
+    });
+})

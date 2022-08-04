@@ -24,6 +24,7 @@ Route::controller(PostController::class)->group(function(){
     Route::get('posts/all','index');
     Route::post('post/add','addPostWithAjax');
     Route::get('post/edit/{id}','getEditPost');
-    Route::post('post/edit/{id}','editPostWithAjax');
+    Route::put('post/edit/{id}','editPostWithAjax');
     Route::delete('post/delete/{id}','deletePostWithAjax');
+    Route::delete('post/delete-selected','deleteSelectedPostsWithAjax');
 });

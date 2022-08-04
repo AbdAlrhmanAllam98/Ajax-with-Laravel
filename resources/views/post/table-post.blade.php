@@ -2,6 +2,9 @@
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">
         Add Post
     </button>
+    <button type="button" class="btn btn-danger" id="deleteSelected">
+        Delete Selected Posts
+    </button>
     <hr>
     <h2>All Posts</h2>
     <hr>
@@ -10,6 +13,7 @@
     <table class="table" id="table">
         <thead>
           <tr>
+            <th scope="col"><input type="checkbox" id="idAll"></th>
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Content</th>
@@ -21,6 +25,7 @@
         <tbody>
             @foreach ($posts as $post)
                 <tr id="{{$post->id}}">
+                    <td><input type="checkbox" name="idPost" value="{{$post->id}}"></td>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->content}}</td>

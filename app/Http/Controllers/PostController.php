@@ -23,7 +23,7 @@ class PostController extends Controller
         $post=Post::findOrFail($id);
         return response()->json($post);
     }
-
+    
     public function editPostWithAjax(Request $request,$id){
         $post=Post::findOrFail($id);
         $post->title=$request->title;
@@ -35,7 +35,13 @@ class PostController extends Controller
     public function deletePostWithAjax($id){
         $post=Post::findOrFail($id);
         if($post->delete()){
-            return response()->json(['message'=>'success']);
+            return response()->json(['message'=>'Post Deleted Successfully']);
         }
+    }
+    public function deleteSelectedPostsWithAjax(Request $request){
+        $allSelectedIDs=$request->allSelectedIDs;
+        Post::whereIn('id',$allSelectedIDs)->delete();
+        return response()->json(['message'=>'Selected Posts Deleted Successfully']);
+        
     }
 }
