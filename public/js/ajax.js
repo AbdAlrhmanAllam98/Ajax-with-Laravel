@@ -68,6 +68,7 @@ $('#add-post').on('submit',function(e){
         },
         success:function(response){
             if(response){
+                toastr.success("Post is Added !! ");
                 $('#table tbody').append(`<tr id="${response.id}">
                                             <td><input type="checkbox" name="idPost" value="${response.id}"></td>
                                             <td>${response.id}</td>

@@ -29,7 +29,7 @@
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->content}}</td>
-                    <td>{{\App\Models\User::find($post->user_id)->name}}</td>
+                    <td>{{$post->user->name}}</td>
                     <td>
                         <a href="" onclick="editPost({{$post->id}})" class="btn btn-primary rounded-0" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                     </td>
