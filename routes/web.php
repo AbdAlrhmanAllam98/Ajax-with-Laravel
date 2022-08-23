@@ -23,8 +23,8 @@ Route::post('/get-data',[RepoController::class,'getDataFromUser']);
 Route::controller(PostController::class)->group(function(){
     Route::get('posts/all','index');
     Route::post('post/add','addPostWithAjax');
-    Route::get('post/edit/{id}','getEditPost');
-    Route::put('post/edit/{id}','editPostWithAjax');
-    Route::delete('post/delete/{id}','deletePostWithAjax');
+    Route::get('post/edit/{post}','getEditPost');
+    Route::put('post/edit/{post}','editPostWithAjax');
+    Route::delete('post/delete/{post}','deletePostWithAjax');
     Route::delete('post/delete-selected','deleteSelectedPostsWithAjax');
 });
