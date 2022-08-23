@@ -38,9 +38,13 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+    protected $casts=[
+        'created_at'=>'date:Y-m-d',
+        'updated_at'=>'date:Y-m-d',
+        'email_verified_at'=>'date:Y-m-d',
     ];
+
+    
     public function posts(){
         return $this->hasMany(Post::class);
     }
