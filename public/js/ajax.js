@@ -55,6 +55,7 @@ $('#input-form').on('submit',function(e){
 // Add Post with ajax
 $('#add-post').on('submit',function(e){
     e.preventDefault();
+    $('.form-text.text-danger').text("");
     let _token=$('input[name=_token]').val();
     let title=$('#add-title').val();
     let content=$('#add-content').val();
@@ -81,6 +82,13 @@ $('#add-post').on('submit',function(e){
                 $('#add-post')[0].reset();
                 $('#addModal').modal('toggle');
             }
+        },
+        error:function(reject){
+            toastr.error("Post isn`t Added !! ");
+            response=JSON.parse(reject.responseText);
+            $.each(response.errors,function(key,value){
+                $(`#${key}-error-add`).text(value);
+            });
         }
     });
 });
@@ -108,6 +116,13 @@ $('#edit-post').on('submit',function(e){
                 $('#table tbody #'+id+' td:nth(3)').html(response.content);
                 $('#editModal').modal('toggle');
                 }
+            },
+            error:function(reject){
+                toastr.error("Post isn`t Updated !! ");
+                response=JSON.parse(reject.responseText);
+                $.each(response.errors,function(key,value){
+                    $(`#${key}-error-edit`).text(value[0]);
+                });
             }
     });
 });

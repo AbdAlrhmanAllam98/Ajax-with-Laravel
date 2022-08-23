@@ -11,11 +11,13 @@
                 <div class="form-group">
                     <label for="add-title">Title</label>
                     <input type="text" name="add-title" id="add-title" class="form-control">
-                </div>
-                <div class="form-group">
+                    <small class="form-text text-danger" id="title-error-add"></small>
+                  </div>
+                  <div class="form-group">
                     <label for="add-content">Content</label>
                     <input type="text" name="add-content" id="add-content" class="form-control">
-                </div>
+                    <small class="form-text text-danger" id="content-error-add"></small>
+                  </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Post</button>

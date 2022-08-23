@@ -12,10 +12,12 @@
                 <div class="form-group">
                     <label for="edit-title">Title</label>
                     <input type="text" name="edit-title" id="edit-title" class="form-control">
+                    <small class="form-text text-danger" id="title-error-edit"></small>
                 </div>
                 <div class="form-group">
                     <label for="edit-content">Content</label>
                     <input type="text" name="edit-content" id="edit-content" class="form-control">
+                    <small class="form-text text-danger" id="content-error-edit"></small>
                 </div>
             
                 <div class="modal-footer">
